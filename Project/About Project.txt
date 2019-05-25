@@ -1,0 +1,1 @@
+SwapSwop is an item exchange application that allows the users to exchange items/tasks among themselves. This application could not be completed due to time constraints, however we (a group of 7 members) were able to implement the main functionality of the application and were also able to create a chat platform for users. 
