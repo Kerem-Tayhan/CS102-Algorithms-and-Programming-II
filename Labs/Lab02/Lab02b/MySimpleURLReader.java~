@@ -1,0 +1,64 @@
+/**
+ * This class is a subclass of the SimpleURLReader class it adds new methods.
+ * @author Osama Tanveer
+ * @version 1.0, 5 March 2019
+ */
+package Lab02b;
+import cs1.SimpleURLReader;
+
+public class MySimpleURLReader extends SimpleURLReader {
+  
+  private String url; //URL used to create the object
+  
+  //constructor
+  
+  /**
+   * Constructor for class MySimpleURLReader. Sets the URL name to the name input by the user.
+   * @param url, which is a String that is the name of the URL.
+   */
+  public MySimpleURLReader(String url) {
+    super(url); //passes the parameter to the parent class
+    this.url = url; //sets the name of the property of this class to the name input by the user
+  }
+  
+  //methods
+  
+  /**
+   * This method returns the URL that was input by the user.
+   * @param no input parameters.
+   * @return url, which is the URL in String format.
+   */
+  public String getURL() {
+    return this.url; //returns the url that was originally passed by the user as a parameter
+  }
+  
+  /**
+   * This method returns the name of the URL that was entered by the user.
+   * @param no input parameters.
+   * @return url.substring(index+1), a String which is the name of the URL.
+   */  
+  public String getName() {
+    String temp = ""; //to temporarily store a character for comparison
+    int index = 0;  //to store the index of the last "/"
+    
+    //checking the index for the last occurence of "/" 
+    for (int i = 0 ; i < url.length() ; i++) {
+      temp = url.substring(i , i + 1);
+      if (temp.equals("/")) {
+        index = i;
+      }     
+    }
+    return url.substring(index+1); //returns the name of the file in the link
+  }
+  
+  /**
+   * This method overloads the getPageContents method of the parent class to remove a bug that added null to the start
+   * of String.
+   * @param no input parameters.
+   * @return original.substring(4), a String which does not contain the "null" word.
+   */  
+  public String getPageContents() {
+    String original = super.getPageContents(); //calling the function of the parent class to get the original text
+    return original.substring(4); //removing null; 4 because null is 4 characters so it is not included.
+  }
+}

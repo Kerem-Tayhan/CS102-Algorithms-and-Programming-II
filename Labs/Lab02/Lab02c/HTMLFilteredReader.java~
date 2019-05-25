@@ -1,0 +1,38 @@
+package Lab02c;
+
+import Lab02b.*;
+
+public class HTMLFilteredReader extends MySimpleURLReader {
+  
+  private String url;
+  
+  public HTMLFilteredReader(String url) {
+    super(url);
+    this.url = url;
+  }
+  
+  
+  public String getPageContents() {
+    String withoutHTML = "";
+    String withHTML = super.getPageContents();
+    boolean ignore = false;
+    for (int i = 0 ; i < withHTML.length() ; i++) {
+      if (withHTML.charAt(i) == '<') {
+        ignore = true;
+      }
+      else if (withHTML.charAt(i) == '>') {
+        ignore = false;
+      }
+      else if (!ignore) {
+        withoutHTML+= withHTML.charAt(i);
+      }
+    }
+    return withoutHTML;
+    
+  }
+  
+  public String getUnfilteredPageContents() {
+    return super.getPageContents();
+  } 
+  
+}

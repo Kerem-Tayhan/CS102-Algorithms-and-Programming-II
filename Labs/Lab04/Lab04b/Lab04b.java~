@@ -1,0 +1,15 @@
+import javax.swing.*;
+public class Lab04b extends JFrame {
+  
+  public Lab04b () {
+    this.setTitle("Balloon Game");
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setVisible(true);
+    BalloonsGamePanel gamePanel = new BalloonsGamePanel();
+    this.add(gamePanel);
+    this.pack();
+  }
+  public static void main(String[] args) {
+        new Lab04b();
+    }
+}

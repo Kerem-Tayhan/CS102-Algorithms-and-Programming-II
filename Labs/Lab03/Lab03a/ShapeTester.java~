@@ -1,0 +1,150 @@
+/**
+ * This program is used to test the Circle, Rectangle, Square and ShapeContainer classes by providing a menu
+ * for the users to carry out operations according to the menu listed.
+ * @author Osama Tanveer
+ * @version 1.0, 12 March 2019
+ */
+import java.util.Scanner;
+public class ShapeTester {
+  public static void main(String[] args) {
+    
+    Scanner scan = new Scanner(System.in);
+    
+    int option;
+    
+    // possible shapes
+    Circle circle;
+    Rectangle rectangle;
+    Square square;
+    ShapeContainer collection = null;
+    
+    // menu
+    System.out.println("1. Create an empty collection for shapes.");
+    System.out.println("2. List the shapes you can create.");
+    System.out.println("3. Print the total area of the shapes.");
+    System.out.println("4. Get information about all the shapes.");
+    System.out.println("5. Get the shape containing a particular set of coordinates.");
+    System.out.println("6. Empty the collection.");
+    System.out.println("7. Quit.");
+    
+    do {
+      System.out.print("Enter the option you want to choose from the menu above: ");
+      option = scan.nextInt();
+      
+      // creates an empty collection when option 1 selected
+      if (option == 1) {
+        collection = new ShapeContainer();
+        System.out.println("An empty collection is created.");
+      }
+      
+      // presents with options of shapes that can be created
+      if (option == 2) {
+        int optionForShape;
+        System.out.println("1. Circle.");
+        System.out.println("2. Rectangle.");
+        System.out.println("3. Square.");
+        System.out.print("Which shape do you want to create?");
+        optionForShape = scan.nextInt();
+        // to create objects according to the action that is selected
+        if (optionForShape == 1) {
+          System.out.print("Enter the radius: ");
+          int radius = scan.nextInt();
+          System.out.print("Enter the x-axis value: ");
+          int x = scan.nextInt();
+          System.out.print("Enter the y-axis value: ");
+          int y = scan.nextInt();
+          if ((x >= 0) && (y >= 0) && (radius >= 0)) {
+            circle = new Circle(radius, x, y);
+            collection.add(circle);
+          }
+          else {
+            System.out.println("Negative values cannot be accepted.");
+          }
+        }
+        if (optionForShape == 2) {
+          System.out.print("Enter the width: ");
+          int width = scan.nextInt();
+          System.out.print("Enter the height: ");
+          int height = scan.nextInt();
+          System.out.print("Enter the x-axis value: ");
+          int x = scan.nextInt();
+          System.out.print("Enter the y-axis value: ");
+          int y = scan.nextInt();
+          if ((x >= 0) && (y >= 0) && (height >= 0) && (width >= 0)) {
+            rectangle = new Rectangle(width, height, x, y);
+            collection.add(rectangle);
+          }
+          else {
+            System.out.println("Negative values cannot be accepted.");
+          }
+        }
+        if (optionForShape == 3) {
+          System.out.print("Enter the side: ");
+          int side = scan.nextInt();
+          System.out.print("Enter the x-axis value: ");
+          int x = scan.nextInt();
+          System.out.print("Enter the y-axis value: ");
+          int y = scan.nextInt();
+          if ((x >= 0) && (y >= 0) && (side >= 0)) {  
+            square = new Square(side,1,1);
+            collection.add(square);
+          }
+          else {
+            System.out.println("Negative values cannot be accepted.");
+          }
+          
+        }
+      }
+      // checks if collection is empty or not
+      if (option == 3) {
+        if (collection == null) {
+          System.out.println("The collection is empty.");
+        }
+        else {
+          System.out.println("The total area of all the shapes in the collection is " + collection.getArea());
+        }
+        
+      }
+      // prints out the collection
+      if (option == 4) {
+        if (collection == null) {
+          System.out.println("The collection is empty.");
+        }
+        else {
+          System.out.println(collection);
+        }
+      }
+      // option to check which point contains a particular point
+      if (option == 5) {
+        System.out.print("Enter the x-coordinate: ");
+        int x = scan.nextInt();
+        System.out.print("Enter the y-coordinate: ");
+        int y = scan.nextInt();
+        if (collection.firstShapeContainingXY(x,y) == null) {
+          System.out.println("No shape exists at this location.");
+        }
+        else {
+          System.out.println((collection.firstShapeContainingXY(x,y)).getInfo());
+        }
+      }
+      
+      //empties the collection by removing all elements
+      if (option == 6) {
+        if (collection != null) {
+          collection.remove();
+          System.out.println("Collection emptied.");
+        }
+      }
+      
+    }
+    while (option != 7); // 7 entered to quit the program
+  }
+}
+
+/**(i)  If the getArea() method of the Circle class is commented out, an error occurs that the Circle class is not an
+  *     abstract class and it does not override the abstract method getArea() in the Shape class.
+  *(ii) If the Circle class is an abstract class, the program does not create any object, but runs perfectly if the
+  *     functionality regarding the circles are excluded.
+  *(iii)If the Circle class is created as an abstract class, it would mean that an object of the Circle class can not
+  *     be created. Therefore, a compiler time error occurs that shows the the class cannot be instantiated. 
+  **/

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20160913-225446">
+  <project autorefresh="false" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="Lab02b/Lab02b.java" package="Lab02b" timestamp="05-Mar-2019 10:24:39">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02c/HTMLFilteredReader.java" package="Lab02c" timestamp="04-Mar-2019 20:07:32">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02e/Lab02e.java" package="Lab02e" timestamp="05-Mar-2019 10:09:16">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02b/MySimpleURLReader.java" package="Lab02b" timestamp="05-Mar-2019 10:16:00">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02d/XHTMLFilteredReader.java" package="Lab02d" timestamp="05-Mar-2019 10:21:08">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02c/Lab02c.java" package="Lab02c" timestamp="05-Mar-2019 10:24:39">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02d/Lab02d.java" package="Lab02d" timestamp="05-Mar-2019 10:24:39">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="Lab02a/Lab02a.java" package="Lab02a" timestamp="05-Mar-2019 10:24:39">
+        <select from="760" to="760"/>
+        <scroll column="0" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath>
+      <file absolute="false" name="../cs1.jar"/>
+    </classpath>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

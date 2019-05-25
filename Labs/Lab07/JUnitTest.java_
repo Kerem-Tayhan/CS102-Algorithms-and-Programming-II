@@ -1,0 +1,10 @@
+import junit.Framework.TestCase;
+
+public class JUnitTest extends TestCase {
+  
+  public void testIsOrdered() {
+    List list = new List();
+    list.createFrom("abcdef");
+    assertTrue(list.isOrdered());
+  }
+}

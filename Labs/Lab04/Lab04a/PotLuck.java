@@ -1,0 +1,146 @@
+/**
+ * This class extends the JFrame class of Swing Library. It creates a game that presents the user with 25 buttons, with 
+ * 2 hidden bombs and a prize.
+ * @author Osama Tanveer
+ * @version 1.0, 2 April 2019
+ */
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.border.EmptyBorder;
+
+public class PotLuck extends JFrame implements ActionListener {
+  
+  // Constants  
+  private final int ROW = 5;
+  private final int COLUMN = 5;
+  
+  // Variables
+  private JLabel label;
+  private JButton prizeButton;
+  private JButton firstBombButton;
+  private JButton secondBombButton;
+  private int prize = 0;
+  private int firstBomb = 0;
+  private int secondBomb = 0;
+  private int counter;
+  private JButton restartGame;
+  private JPanel contentPanel;
+  private JPanel panel;
+  
+  /**
+   * This is a constructor for the PotLuck class. It sets the game.
+   * @param No input parameters.
+   * @return Does not return anyting.
+   */
+  public PotLuck() {
+    setTitle("Pot Luck Game");
+    setBounds(500, 500, 500, 500);
+    contentPanel = new JPanel();
+    contentPanel.setBorder(new EmptyBorder(ROW, ROW, COLUMN, COLUMN));
+    contentPanel.setLayout(new BorderLayout(0, 0));
+    setContentPane(contentPanel);
+    setVisible(true);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //setLayout(new GridLayout(ROW, COLUMN));
+    
+    
+    panel = new JPanel();
+    contentPanel.add(panel, BorderLayout.CENTER);
+    panel.setLayout(new GridLayout(ROW, COLUMN, ROW*2, COLUMN*2));
+    
+    // To count the number of clicks
+    counter = 0;
+    
+    while (prize == firstBomb ||  prize == secondBomb || firstBomb == secondBomb){
+      // Generating random locations
+      prize = (int)(Math.random()*(ROW*COLUMN));
+      firstBomb = (int)(Math.random()*(ROW*COLUMN));
+      secondBomb = (int)(Math.random()*(ROW*COLUMN));
+    }
+//    
+//      System.out.println(prize);
+//      System.out.println(firstBomb);
+//      System.out.println(secondBomb);
+    
+    // Adding buttons
+    for(int i = 0; i < (ROW*COLUMN); i++){
+      
+      // Adding prize button at the randombly generated locattion
+      if(prize == i){
+        prizeButton = new JButton();
+        prizeButton.addActionListener(this);
+        panel.add(prizeButton);
+      }
+      
+      // Adding first bomb button at the randomly generated location
+      else if  (firstBomb == i ){
+        firstBombButton = new JButton();
+        firstBombButton.addActionListener(this);
+        panel.add(firstBombButton);
+      }
+      
+      // Adding second bomb button at the randomly generated location
+      else if  (secondBomb == i ){
+        secondBombButton = new JButton();
+        secondBombButton.addActionListener(this);
+        panel.add(secondBombButton);
+      }
+      
+      
+      // Adding empty buttons at the remaining locations
+      else{
+        JButton temp = new JButton();
+        panel.add(temp);
+        temp.addActionListener(this);
+      }
+    }
+    
+    // Setting and aligning the number of buttons clicked
+    label = new JLabel("You clicked " +counter+" times\r\n");
+    label.setHorizontalAlignment(SwingConstants.CENTER);
+    contentPanel.add(label, BorderLayout.NORTH);
+  }
+
+  /**
+   * This method overrides the abstract method from the ActionListener interface. It performs specific functions with 
+   * specific button clicks.
+   * @param event, that contains the details of the event.
+   * @return Does not return anyting.
+   */
+  
+  public void actionPerformed(ActionEvent event) {
+    // Checking if empty buttons clicked
+    if (event.getSource() != prizeButton && event.getSource() != firstBombButton && event.getSource() != secondBombButton){
+      counter += 1;
+      ((JButton) event.getSource()).setEnabled(false);
+      label.setText("You clicked " + counter + " times.");
+    }
+    
+    // Checking if prize button clicked
+    else if (event.getSource() == prizeButton){ 
+      label.setText("You got the prize in " + (counter + 1) + " clicks." );
+      for(int i = 0; i < (ROW*COLUMN); i++){
+        if(panel.getComponent(i) != prizeButton){
+          ((JButton) panel.getComponent(i)).setEnabled(false);   
+        }
+      }
+    }
+    
+    // Indicating that bomb button pressed
+    else {
+      label.setText("You got blown up at click " + (counter + 1));
+      // Removing highlight from all buttons
+      for (int i = 0; i < (ROW * COLUMN); i++){
+        if (panel.getComponent(i) != prizeButton || panel.getComponent(i) != firstBombButton || panel.getComponent(i) != secondBombButton){
+          ((JButton) panel.getComponent(i)).setEnabled(false);   
+        }
+      }
+    }
+  }
+  
+  // Main Method
+  public static void main(String[] args) {
+    PotLuck game = new PotLuck();
+  }
+}

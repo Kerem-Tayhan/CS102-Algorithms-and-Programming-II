@@ -1,0 +1,21 @@
+import junit.framework.TestCase;
+
+public class JUnitTest extends TestCase {
+  
+  public void testContains() {
+    List list = new List();
+    
+    assertFalse(list.contains("hl"));
+    
+    list.addToHead("hl");
+    assertTrue(list.contains("hl"));
+  }
+  
+  public void testIsEmpty() {
+     List list = new List();
+     list.addToHead("a");
+     
+     assertFalse(list.isEmpty());
+     assertTrue(list.isEmpty());
+  }
+}
